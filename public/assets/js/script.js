@@ -17,7 +17,7 @@ var config = {
 };
 
 var player;
-var stars;
+var notes;
 var bombs;
 var platforms;
 var cursors;
@@ -29,11 +29,13 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.image('sky', 'assets/images/sky.png');
+    this.load.image('sky', 'assets/images/backGround.png');
     this.load.image('ground', 'assets/images/platform.png');
     this.load.image('note', 'assets/images/note.png');
     this.load.image('bomb', 'assets/images/bomb.png');
-    this.load.spritesheet('dude', 'assets/images/dude.png', { frameWidth: 32, frameHeight: 48 });
+    this.load.spritesheet('dude', 'assets/images/dudeAli.png', { frameWidth: 32, frameHeight: 48 });
+    this.load.audio('music', 'assets/sounds/metal.mp3');
+    this.load.audio('death', 'assets/sounds/scream.mp3');
 }
 
 function create ()
@@ -85,13 +87,13 @@ function create ()
     cursors = this.input.keyboard.createCursorKeys();
 
     //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
-    stars = this.physics.add.group({
+    notes = this.physics.add.group({
         key: 'note',
         repeat: 11,
         setXY: { x: 12, y: 0, stepX: 70 }
     });
 
-    stars.children.iterate(function (child) {
+    notes.children.iterate(function (child) {
 
         //  Give each star a slightly different bounce
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
@@ -101,17 +103,31 @@ function create ()
     bombs = this.physics.add.group();
 
     //  The score
-    scoreText = this.add.text(16, 16, 'Score : 0/44', { fontSize: '32px', fill: '#000' });
+    scoreText = this.add.text(16, 16, 'Score : 0/100', { fontSize: '32px', fill: '#000' });
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, platforms);
-    this.physics.add.collider(stars, platforms);
+    this.physics.add.collider(notes, platforms);
     this.physics.add.collider(bombs, platforms);
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-    this.physics.add.overlap(player, stars, collectStar, null, this);
+    this.physics.add.overlap(player, notes, collectStar, null, this);
 
     this.physics.add.collider(player, bombs, hitBomb, null, this);
+
+    this.death = this.sound.add('death');
+    this.music = this.sound.add('music');
+
+    var musicConfig = {
+        mute: false,
+        volume: 1,
+        rate: 1,
+        detune: 0,
+        seek: 0,
+        loop: false,
+        delay: 0
+    }
+    this.music.play(musicConfig);
 }
 
 function update ()
@@ -152,12 +168,12 @@ function collectStar (player, star)
 
     //  Add and update the score
     score += 1;
-    scoreText.setText('Score: ' + score + '/44');
+    scoreText.setText('Score: ' + score + '/100');
 
-    if (stars.countActive(true) === 0)
+    if (notes.countActive(true) === 0)
     {
         //  A new batch of stars to collect
-        stars.children.iterate(function (child) {
+        notes.children.iterate(function (child) {
 
             child.enableBody(true, child.x, 0, true, true);
 
@@ -175,6 +191,17 @@ function collectStar (player, star)
 function hitBomb (player, bomb)
 {
     this.physics.pause();
+
+    var deathConfig = {
+        mute: false,
+        volume: 10,
+        rate: 1,
+        detune: 0,
+        seek: 0,
+        loop: false,
+        delay: 0
+    }
+    this.death.play(deathConfig);
 
     player.setTint(0xff0000);
 
