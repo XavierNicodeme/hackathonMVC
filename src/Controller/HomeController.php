@@ -25,11 +25,12 @@ class HomeController extends AbstractController
     }
 
     public function win()
-    {   $result = 0;
+    {
+        $result = 0;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($_POST['name'] === 'vador') {
                 $result = 1;
-            }else {
+            } else {
                 $result = 2;
             }
         }
