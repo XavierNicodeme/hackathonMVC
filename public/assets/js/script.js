@@ -17,7 +17,7 @@ var config = {
 };
 
 var player;
-var stars;
+var notes;
 var bombs;
 var platforms;
 var cursors;
@@ -29,11 +29,12 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.image('sky', 'assets/images/sky.png');
+    this.load.image('sky', 'assets/images/backGround.png');
     this.load.image('ground', 'assets/images/platform.png');
     this.load.image('note', 'assets/images/note.png');
     this.load.image('bomb', 'assets/images/bomb.png');
     this.load.spritesheet('dude', 'assets/images/dude.png', { frameWidth: 32, frameHeight: 48 });
+    this.load.audio('music', 'assets/sounds/metal.mp3');
 }
 
 function create ()
@@ -85,13 +86,13 @@ function create ()
     cursors = this.input.keyboard.createCursorKeys();
 
     //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
-    stars = this.physics.add.group({
+    notes = this.physics.add.group({
         key: 'note',
         repeat: 11,
         setXY: { x: 12, y: 0, stepX: 70 }
     });
 
-    stars.children.iterate(function (child) {
+    notes.children.iterate(function (child) {
 
         //  Give each star a slightly different bounce
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
@@ -105,13 +106,26 @@ function create ()
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, platforms);
-    this.physics.add.collider(stars, platforms);
+    this.physics.add.collider(notes, platforms);
     this.physics.add.collider(bombs, platforms);
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-    this.physics.add.overlap(player, stars, collectStar, null, this);
+    this.physics.add.overlap(player, notes, collectStar, null, this);
 
     this.physics.add.collider(player, bombs, hitBomb, null, this);
+
+    this.music = this.sound.add('music');
+
+    var musicConfig = {
+        mute: false,
+        volume: 1,
+        rate: 1,
+        detune: 0,
+        seek: 0,
+        loop: false,
+        delay: 0
+    }
+    this.music.play(musicConfig);
 }
 
 function update ()
@@ -154,10 +168,10 @@ function collectStar (player, star)
     score += 1;
     scoreText.setText('Score: ' + score + '/44');
 
-    if (stars.countActive(true) === 0)
+    if (notes.countActive(true) === 0)
     {
         //  A new batch of stars to collect
-        stars.children.iterate(function (child) {
+        notes.children.iterate(function (child) {
 
             child.enableBody(true, child.x, 0, true, true);
 
