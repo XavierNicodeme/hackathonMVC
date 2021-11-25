@@ -35,6 +35,7 @@ function preload ()
     this.load.image('bomb', 'assets/images/bomb.png');
     this.load.spritesheet('dude', 'assets/images/dudeAli.png', { frameWidth: 32, frameHeight: 48 });
     this.load.audio('music', 'assets/sounds/metal.mp3');
+    this.load.audio('death', 'assets/sounds/scream.mp3');
 }
 
 function create ()
@@ -114,6 +115,7 @@ function create ()
 
     this.physics.add.collider(player, bombs, hitBomb, null, this);
 
+    this.death = this.sound.add('death');
     this.music = this.sound.add('music');
 
     var musicConfig = {
@@ -189,6 +191,17 @@ function collectStar (player, star)
 function hitBomb (player, bomb)
 {
     this.physics.pause();
+
+    var deathConfig = {
+        mute: false,
+        volume: 10,
+        rate: 1,
+        detune: 0,
+        seek: 0,
+        loop: false,
+        delay: 0
+    }
+    this.death.play(deathConfig);
 
     player.setTint(0xff0000);
 
