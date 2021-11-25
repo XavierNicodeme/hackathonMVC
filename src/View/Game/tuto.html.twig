@@ -1,0 +1,34 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Tuto
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-center">
+        <button type="button" class="btn border m-3"><a class="text-decoration-none text-white fs-2"href="/">Retour</a></button>
+    </div>
+    <div class="d-flex justify-content-around mb-5 mt-5">
+        <div class="card col-5 me-5">
+            <img src="/assets/images/start.png" class="card-img-top" alt="start">
+            <div class="card-body">
+                <h5 class="card-title text-center">Pour commencer</h5>
+                <p class="card-text">Objectifs : récupérer les notes sans te faire exploser par les bombes</p>
+            </div>
+        </div>
+        <div class="card col-5 me-5">
+            <img src="/assets/images/win.png"  class="card-img-top" alt="win">
+            <div class="card-body">
+                <h5 class="card-title text-center">Pour accéder à l'étape suivante</h5>
+                <p class="card-text">Il faut récupérer 100 notes pour pouvoir accéder à l'extrait complet de la musique</p>
+            </div>
+        </div>
+        <div class="card col-5">
+            <img src="/assets/images/loose.png"  class="card-img-top" alt="loose">
+            <div class="card-body">
+                <h5 class="card-title text-center">Game Over</h5>
+                <p class="card-text">Si une bombe vous touche, retour au début</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
