@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="assets/css/style.css">
+{% endblock %}
+{% block title %}
+    Game
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+    <button type="button" class="btn border m-3"><a class="text-decoration-none text-white fs-2" href="/">Retour</a></button>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+<script src="/assets/js/script.js"></script>
+{% endblock %}
