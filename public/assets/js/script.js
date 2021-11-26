@@ -36,6 +36,7 @@ function preload ()
     this.load.spritesheet('dude', 'assets/images/dudeAli.png', { frameWidth: 32, frameHeight: 48 });
     this.load.audio('music', 'assets/sounds/metal.mp3');
     this.load.audio('death', 'assets/sounds/scream.mp3');
+    this.load.audio('coin', 'assets/sounds/coin-sound.mp3');
 }
 
 function create ()
@@ -117,6 +118,7 @@ function create ()
 
     this.death = this.sound.add('death');
     this.music = this.sound.add('music');
+    this.coin = this.sound.add('coin');
 
     var musicConfig = {
         mute: false,
@@ -162,9 +164,20 @@ function update ()
     }
 }
 
-function collectStar (player, star)
+function collectStar (player, note)
 {
-    star.disableBody(true, true);
+    var coinConfig = {
+        mute: false,
+        volume: 10,
+        rate: 1,
+        detune: 0,
+        seek: 0,
+        loop: false,
+        delay: 0
+    }
+    this.coin.play(coinConfig);
+
+    note.disableBody(true, true);
 
     //  Add and update the score
     score += 1;
