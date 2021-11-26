@@ -11,9 +11,25 @@
 <div>
     <button type="button" class="btn border m-3"><a class="text-decoration-none text-white fs-2" href="/">Retour</a></button>
     <!-- Button trigger modal -->
-    <button class="d-none"id="win-modal" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
+    <button id="win-modal" type="button" class="btn border m-3 text-white" data-bs-toggle="modal" data-bs-target="#answer">
+        T'as Trouvé ?
     </button>
+
+    <div class="modal fade" id="answer" tabindex="-1" aria-labelledby="answer" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Alors ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <a href="win">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Donne ta réponse ici</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
