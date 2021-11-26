@@ -1,0 +1,38 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    You Win
+{% endblock %}
+
+{% block content %}
+    {% if result == 0 %}
+        <div class="input-group mb-3 text-white mt-5">
+        <h1 class="text-center">Quel est le nom de la musique ?</h1>
+        <form id="myForm" name="myForm" class="mt-5 d-flex flex-column col-6 m-auto w-50" method="post" action="">
+            <input type="text" class="form-control" placeholder="Song's Name" name="name">
+            <button type="submit" class="btn border text-white mt-4">OK</button>
+        </form>
+    {% endif %}
+    {% if result == 1 %}
+        <div class="text-white text-center mt-5">
+            <h1>T'es le boss !</h1>
+            <img class="mt-5 mb-5" src="/assets/images/win.gif">
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn border m-3"><a class="text-decoration-none text-white fs-2" href="/">Retour a l'accueil</a></button>
+            </div>
+        </div>
+    {% endif %}
+    {% if result == 2 %}
+        <div class="text-white text-center mt-5">
+            <img src="assets/images/game-over.png" width="350px" height="300px">
+            <p>Recommence depuis le début</p>
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn border m-3"><a class="text-decoration-none text-white fs-2" href="/game">Rejouer</a></button>
+            </div>
+        </div>
+    {% endif %}
+    </div>
+{% endblock %}
+ {% block javascript %}
+ <script src="/assets/js/soundWin.js"></script>
+ {% endblock %}

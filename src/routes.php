@@ -11,4 +11,5 @@ return [
     'win'  => ['GameController', 'win',],
     'game' => ['GameController', 'game'],
     'tuto' => ['GameController', 'tuto'],
+    'try'  => ['GameController', 'try'],
 ];
