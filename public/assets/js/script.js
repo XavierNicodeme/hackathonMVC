@@ -36,7 +36,7 @@ function preload ()
     this.load.image('ground', 'assets/images/platform2.png');
     this.load.image('note', 'assets/images/note.png');
     this.load.image('bomb', 'assets/images/bomb.png');
-    this.load.spritesheet('dude', 'assets/images/dudeAli.png', { frameWidth: 32, frameHeight: 48 });
+    this.load.spritesheet('dude', 'assets/images/dudeAli2.png', { frameWidth: 32, frameHeight: 48 });
     this.load.audio('music', 'assets/sounds/metal.mp3');
     this.load.audio('death', 'assets/sounds/scream2.mp3');
     this.load.audio('coin', 'assets/sounds/coin-sound.mp3');
