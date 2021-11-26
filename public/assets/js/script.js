@@ -108,7 +108,7 @@ function create ()
     bombs = this.physics.add.group();
 
     //  The score
-    scoreText = this.add.text(16, 16, 'Score : 0/100', { fontSize: '32px', fill: '#000' });
+    scoreText = this.add.text(16, 16, 'Score : 0/60', { fontSize: '32px', fill: '#000' });
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, platforms);
@@ -141,13 +141,12 @@ function update ()
 {
     if (gameOver)
     {
-        document.location.href = '/';
+        document.location.href = '/game';
     }
 
     if (cursors.left.isDown)
     {
         player.setVelocityX(-300);
-
         player.anims.play('left', true);
     }
     else if (cursors.right.isDown)
@@ -186,8 +185,8 @@ function collectStar (player, note)
 
     //  Add and update the score
     score += 1;
-    scoreText.setText('Score: ' + score + '/100');
-    if (score === 100) {
+    scoreText.setText('Score: ' + score + '/60');
+    if (score === 60) {
         myModal.show();
         console.log(modal)
     }
