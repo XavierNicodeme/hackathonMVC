@@ -13,4 +13,25 @@ class GameController extends AbstractController
     {
         return $this->twig->render('Game/tuto.html.twig');
     }
+
+    public function win()
+    {
+        $result = 0;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $name = array_map('trim', $_POST);
+            if (
+                $name['name1'] === 'star wars' &&
+                $name['name2'] === 'nirvana' &&
+                $name['name3'] === 'snoop dog' &&
+                $name['name4'] === 'jul'
+            ) {
+                $result = 1;
+            } else {
+                $result = 2;
+            }
+        }
+        return $this->twig->render('Game/win.html.twig', [
+            'result' => $result,
+        ]);
+    }
 }
