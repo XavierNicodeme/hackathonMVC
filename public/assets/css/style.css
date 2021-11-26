@@ -1,7 +1,10 @@
 body {
     margin: 0 auto;
     width: 50%;
-    background-color: black;
+    background-image: url("../images/fond.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 .success-animation { margin:150px auto;}
 
