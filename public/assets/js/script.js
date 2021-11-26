@@ -35,8 +35,9 @@ function preload ()
     this.load.image('bomb', 'assets/images/bomb.png');
     this.load.spritesheet('dude', 'assets/images/dudeAli.png', { frameWidth: 32, frameHeight: 48 });
     this.load.audio('music', 'assets/sounds/metal.mp3');
-    this.load.audio('death', 'assets/sounds/scream.mp3');
+    this.load.audio('death', 'assets/sounds/scream2.mp3');
     this.load.audio('coin', 'assets/sounds/coin-sound.mp3');
+    this.load.audio('win', 'assets/sounds/mission-complete.mp3');
 }
 
 function create ()
@@ -119,6 +120,7 @@ function create ()
     this.death = this.sound.add('death');
     this.music = this.sound.add('music');
     this.coin = this.sound.add('coin');
+    this.win = this.sound.add('win');
 
     var musicConfig = {
         mute: false,
