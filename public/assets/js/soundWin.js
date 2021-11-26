@@ -1,7 +1,5 @@
-
 const sound = document.getElementById('sound');
 const pause = document.getElementById('pause');
-
 const audio = new Audio('assets/sounds/aliPerry.mp3');
 
 
