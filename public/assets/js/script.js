@@ -222,3 +222,4 @@ function hitBomb (player, bomb)
 
     gameOver = true;
 }
+
