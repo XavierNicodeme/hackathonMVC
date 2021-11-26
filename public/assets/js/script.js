@@ -187,7 +187,7 @@ function collectStar (player, note)
     //  Add and update the score
     score += 1;
     scoreText.setText('Score: ' + score + '/100');
-    if (score === 3) {
+    if (score === 100) {
         myModal.show();
         console.log(modal)
     }
