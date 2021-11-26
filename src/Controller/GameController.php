@@ -19,11 +19,13 @@ class GameController extends AbstractController
         $result = 0;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = array_map('trim', $_POST);
-            if ($name['name'] === 'Katy Perry' ||
+            if (
+                $name['name'] === 'Katy Perry' ||
                 $name['name'] === 'Katy perry' ||
                 $name['name'] === 'katy perry' ||
                 $name['name'] === 'firework' ||
-                $name['name'] === 'fireworks' ) {
+                $name['name'] === 'fireworks'
+            ) {
                 $result = 1;
             } else {
                 $result = 2;
