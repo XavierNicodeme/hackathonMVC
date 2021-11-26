@@ -3,6 +3,7 @@ const sound1 = document.getElementById('sound1');
 const sound2 = document.getElementById('sound2');
 const sound3 = document.getElementById('sound3');
 const sound4 = document.getElementById('sound4');
+
 const pause1 = document.getElementById('pause1');
 const pause2 = document.getElementById('pause2');
 const pause3 = document.getElementById('pause3');
