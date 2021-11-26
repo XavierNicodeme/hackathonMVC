@@ -24,6 +24,9 @@ var cursors;
 var score = 0;
 var gameOver = false;
 var scoreText;
+var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+    keyboard: false
+})
 
 var game = new Phaser.Game(config);
 
@@ -169,6 +172,10 @@ function collectStar (player, star)
     //  Add and update the score
     score += 1;
     scoreText.setText('Score: ' + score + '/100');
+    if (score === 3) {
+        myModal.show();
+        console.log(modal)
+    }
 
     if (notes.countActive(true) === 0)
     {
